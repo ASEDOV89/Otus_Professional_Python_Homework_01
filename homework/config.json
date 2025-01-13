@@ -1,0 +1,5 @@
+{
+    "REPORT_SIZE": 1500,
+    "LOG_DIR": "./log",
+    "LOG_FILE": "./app.log"
+}
