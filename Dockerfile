@@ -6,6 +6,8 @@ RUN apt-get update && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
+COPY . /src
+
 WORKDIR /src
 
 RUN pip install jupyter==1.0.0 poetry==1.8.3 && curl -s https://pyenv.run | bash

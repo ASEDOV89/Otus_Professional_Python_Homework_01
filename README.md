@@ -19,5 +19,5 @@ Move along. Nothing to see here
 ├── tests
 │   ├── __init__.py
 │   └── test_log_analyzer.py
-├── logs  # Папка для хранения логов (должна быть исключена из репозитория)
-└── reports  # Папка для хранения отчетов (должна быть исключена из репозитория)
+├── logs
+└── reports

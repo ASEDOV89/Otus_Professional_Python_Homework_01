@@ -9,4 +9,9 @@ services:
       - '8888:8888'
     volumes:
       - ./lecture.ipynb:/src/lecture.ipynb
-      - ./config:/src/config
+      - ./config:/config
+      - ./src:/src
+      - ./logs:/logs
+      - ./reports:/reports
+#    working_dir: /src
+#    command: python main.py
