@@ -9,4 +9,4 @@ services:
       - '8888:8888'
     volumes:
       - ./lecture.ipynb:/src/lecture.ipynb
-      - ./project:/src/project
+      - ./config:/src/config
