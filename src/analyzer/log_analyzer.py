@@ -76,7 +76,7 @@ def main(config):
 
         render_report(table_json, report_date, report_dir)
         logger.info("Log message", event="my_event", some_key="some_value")
-    except Exception as err:
+    except Exception:
         logger.error("unexpected_error", exc_info=True)
 
 
