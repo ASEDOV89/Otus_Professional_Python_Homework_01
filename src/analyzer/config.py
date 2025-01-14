@@ -19,6 +19,6 @@ def parse_args():
     parser.add_argument(
         '--config',
         default='config/config.json',
-        help='Path to the configuration file (default: config/config.json)'
+        help='Папка с файлом конфигурации (default: config/config.json)'
     )
     return parser.parse_args()
