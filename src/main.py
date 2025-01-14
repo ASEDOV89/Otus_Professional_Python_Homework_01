@@ -1,7 +1,7 @@
 from app.module import func, err
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     print(func())
     try:
         print(err())

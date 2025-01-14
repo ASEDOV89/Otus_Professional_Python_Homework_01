@@ -20,8 +20,8 @@ def load_config(path):
 def parse_args():
     parser = argparse.ArgumentParser(description="Log Analyzer")
     parser.add_argument(
-        '--config',
-        default='config/config.json',
-        help='Папка с файлом конфигурации (default: config/config.json)'
+        "--config",
+        default="config/config.json",
+        help="Папка с файлом конфигурации (default: config/config.json)",
     )
     return parser.parse_args()

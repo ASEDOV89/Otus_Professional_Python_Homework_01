@@ -3,7 +3,7 @@ import logging
 
 
 def get_logger(config):
-    log_file_path = config.get('LOG_FILE', None)
+    log_file_path = config.get("LOG_FILE", None)
     logger = structlog.get_logger()
 
     if log_file_path:

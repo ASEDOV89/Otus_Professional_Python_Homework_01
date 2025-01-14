@@ -15,8 +15,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 default_config = {
     "REPORT_SIZE": 1000,
-    "REPORT_DIR": os.path.join(BASE_DIR, 'reports'),
-    "LOG_DIR": os.path.join(BASE_DIR, 'logs')
+    "REPORT_DIR": os.path.join(BASE_DIR, "reports"),
+    "LOG_DIR": os.path.join(BASE_DIR, "logs"),
 }
 
 
@@ -27,7 +27,7 @@ structlog.configure(
         structlog.stdlib.add_log_level,
         structlog.stdlib.PositionalArgumentsFormatter(),
         structlog.processors.TimeStamper(fmt="iso"),
-        structlog.processors.JSONRenderer()
+        structlog.processors.JSONRenderer(),
     ],
     context_class=dict,
     logger_factory=LoggerFactory(),
@@ -39,48 +39,40 @@ structlog.configure(
 def main(config):
     logger = get_logger(config)
     try:
-        log_dir = config['LOG_DIR']
-        report_dir = config['REPORT_DIR']
-        report_size = config['REPORT_SIZE']
-
+        log_dir = config["LOG_DIR"]
+        report_dir = config["REPORT_DIR"]
+        report_size = config["REPORT_SIZE"]
 
         latest_log, report_date = find_latest_log(log_dir)
         if not latest_log:
             print("No logs to process.")
             return
 
-
-        report_filename = (
-            f'report-{report_date.strftime("%Y.%m.%d")}.html'
-        )
+        report_filename = f'report-{report_date.strftime("%Y.%m.%d")}.html'
         report_filepath = os.path.join(report_dir, report_filename)
-
 
         if os.path.isfile(report_filepath):
             print(f"Report for {report_date} already exists.")
             return
 
-
         log_path = os.path.join(log_dir, latest_log)
         stats = parse_log(log_path)
 
-
         report_data = stats[:report_size]
-
 
         table_json = [
             {
-                'url': url,
-                'count': data['count'],
-                'count_perc': round(data['count_perc'], 3),
-                'time_sum': round(data['time_sum'], 3),
-                'time_perc': round(data['time_perc'], 3),
-                'time_avg': round(data['time_avg'], 3),
-                'time_max': round(data['time_max'], 3),
-                'time_med': round(data['time_med'], 3),
-            } for url, data in report_data
+                "url": url,
+                "count": data["count"],
+                "count_perc": round(data["count_perc"], 3),
+                "time_sum": round(data["time_sum"], 3),
+                "time_perc": round(data["time_perc"], 3),
+                "time_avg": round(data["time_avg"], 3),
+                "time_max": round(data["time_max"], 3),
+                "time_med": round(data["time_med"], 3),
+            }
+            for url, data in report_data
         ]
-
 
         render_report(table_json, report_date, report_dir)
         logger.info("Log message", event="my_event", some_key="some_value")
