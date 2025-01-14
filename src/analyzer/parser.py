@@ -6,19 +6,19 @@ from src.analyzer.file_utils import open_log_file
 
 def parse_line(line):
     log_pattern = re.compile(
-        r"(?P<remote_addr>\S+) "
-        r"(?P<remote_user>\S+) "
-        r"(?P<http_x_real_ip>\S+) "
-        r"\[(?P<time_local>.+)\] "
+        r"(?P<remote_addr>S+) "
+        r"(?P<remote_user>S+) "
+        r"(?P<http_x_real_ip>S+) "
+        r"[(?P<time_local>.+)] "
         r'"(?P<request>.+?)" '
-        r"(?P<status>\S+) "
-        r"(?P<body_bytes_sent>\S+) "
+        r"(?P<status>S+) "
+        r"(?P<body_bytes_sent>S+) "
         r'"(?P<http_referer>.+?)" '
         r'"(?P<http_user_agent>.+?)" '
-        r"(?P<http_x_forwarded_for>\S+) "
-        r"(?P<http_X_REQUEST_ID>\S+) "
-        r"(?P<http_X_RB_USER>\S+) "
-        r"(?P<request_time>\S+)"
+        r"(?P<http_x_forwarded_for>S+) "
+        r"(?P<http_X_REQUEST_ID>S+) "
+        r"(?P<http_X_RB_USER>S+) "
+        r"(?P<request_time>S+)"
     )
     match = log_pattern.match(line)
     if match:
@@ -58,5 +58,5 @@ def parse_log(log_path):
     return sorted(
         url_stats.items(),
         key=lambda item: item[1]["time_sum"],
-        reverse=True
+        reverse=True,
     )
