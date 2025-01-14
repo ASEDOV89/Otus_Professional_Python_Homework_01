@@ -43,24 +43,30 @@ def main(config):
         report_dir = config['REPORT_DIR']
         report_size = config['REPORT_SIZE']
 
+
         latest_log, report_date = find_latest_log(log_dir)
         if not latest_log:
             print("No logs to process.")
             return
+
 
         report_filename = (
             f'report-{report_date.strftime("%Y.%m.%d")}.html'
         )
         report_filepath = os.path.join(report_dir, report_filename)
 
+
         if os.path.isfile(report_filepath):
             print(f"Report for {report_date} already exists.")
             return
 
+
         log_path = os.path.join(log_dir, latest_log)
         stats = parse_log(log_path)
 
+
         report_data = stats[:report_size]
+
 
         table_json = [
             {
@@ -74,6 +80,7 @@ def main(config):
                 'time_med': round(data['time_med'], 3),
             } for url, data in report_data
         ]
+
 
         render_report(table_json, report_date, report_dir)
         logger.info("Log message", event="my_event", some_key="some_value")
