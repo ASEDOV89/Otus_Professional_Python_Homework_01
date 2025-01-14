@@ -37,9 +37,9 @@ def test_parse_args_default_config():
 @pytest.fixture
 def log_dir(tmp_path):
     log_files = [
-        "nginx-access-ui.log-20250101.gz",
-        "nginx-access-ui.log-20250102.gz",
-        "nginx-access-ui.log-20250103.gz",
+        "nginx-access-ui.log-20200101.gz",
+        "nginx-access-ui.log-20200102.gz",
+        "nginx-access-ui.log-20200103.gz",
     ]
     for file_name in log_files:
         file_path = tmp_path / file_name
