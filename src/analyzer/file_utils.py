@@ -5,7 +5,7 @@ import re
 
 
 def find_latest_log(log_dir):
-    log_file_pattern = re.compile(r"nginx-access-ui\.log-(\d{8})\.gz$")
+    log_file_pattern = re.compile(r"nginx-access-ui.log-(d{8}).gz$")
     latest_date = None
     latest_file = None
 
@@ -21,7 +21,7 @@ def find_latest_log(log_dir):
 
 
 def open_log_file(log_path):
-    if log_path.endswith(".gz"):
+    if log_path.suffix == ".gz":
         return gzip.open(log_path, "rt")
     else:
         return open(log_path, "r")
