@@ -1,6 +1,7 @@
 import re
 from collections import defaultdict
 from statistics import median
+
 from src.analyzer.file_utils import open_log_file
 
 

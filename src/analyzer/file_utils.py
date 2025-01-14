@@ -1,7 +1,7 @@
-import re
-import os
-import gzip
 import datetime
+import gzip
+import os
+import re
 
 
 def find_latest_log(log_dir):

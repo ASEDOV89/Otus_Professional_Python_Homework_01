@@ -1,7 +1,7 @@
-import os
 import argparse
-import sys
 import json
+import os
+import sys
 
 
 def load_config(path):

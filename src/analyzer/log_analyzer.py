@@ -9,7 +9,6 @@ from src.analyzer.log import get_logger
 from src.analyzer.parser import parse_log
 from src.analyzer.reporter import render_report
 
-
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
