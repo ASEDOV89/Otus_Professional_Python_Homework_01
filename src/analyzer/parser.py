@@ -55,6 +55,4 @@ def parse_log(log_path):
         stats["time_med"] = median(stats["times"])
         del stats["times"]
 
-    return sorted(
-        url_stats.items(), key=lambda item: item[1]["time_sum"], reverse=True
-    )
+    return sorted(url_stats.items(), key=lambda item: item[1]["time_sum"], reverse=True)
