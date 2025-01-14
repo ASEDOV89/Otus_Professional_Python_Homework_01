@@ -4,6 +4,7 @@ import json
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+
 def render_report(table_json, report_date, report_dir):
     template_path = os.path.join(
         BASE_DIR,

@@ -1,11 +1,13 @@
 import os
+
 import structlog
+from structlog.stdlib import LoggerFactory
+
 from src.analyzer.config import load_config, parse_args
-from src.analyzer.log import get_logger
 from src.analyzer.file_utils import find_latest_log
+from src.analyzer.log import get_logger
 from src.analyzer.parser import parse_log
 from src.analyzer.reporter import render_report
-from structlog.stdlib import LoggerFactory
 
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,28 +43,24 @@ def main(config):
         report_dir = config['REPORT_DIR']
         report_size = config['REPORT_SIZE']
 
-
         latest_log, report_date = find_latest_log(log_dir)
         if not latest_log:
             print("No logs to process.")
             return
 
-
-        report_filename = f'report-{report_date.strftime("%Y.%m.%d")}.html'
+        report_filename = (
+            f'report-{report_date.strftime("%Y.%m.%d")}.html'
+        )
         report_filepath = os.path.join(report_dir, report_filename)
-
 
         if os.path.isfile(report_filepath):
             print(f"Report for {report_date} already exists.")
             return
 
-
         log_path = os.path.join(log_dir, latest_log)
         stats = parse_log(log_path)
 
-
         report_data = stats[:report_size]
-
 
         table_json = [
             {
@@ -76,7 +74,6 @@ def main(config):
                 'time_med': round(data['time_med'], 3),
             } for url, data in report_data
         ]
-
 
         render_report(table_json, report_date, report_dir)
         logger.info("Log message", event="my_event", some_key="some_value")
