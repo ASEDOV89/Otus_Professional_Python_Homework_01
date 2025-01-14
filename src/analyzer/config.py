@@ -3,6 +3,7 @@ import argparse
 import sys
 import json
 
+
 def load_config(path):
     if not os.path.exists(path):
         print(f"Config file {path} does not exist.")

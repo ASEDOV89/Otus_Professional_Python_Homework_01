@@ -1,6 +1,7 @@
 import structlog
 import logging
 
+
 def get_logger(config):
     log_file_path = config.get('LOG_FILE', None)
     logger = structlog.get_logger()
@@ -12,7 +13,8 @@ def get_logger(config):
         logging.getLogger().addHandler(file_handler)
     else:
         logging.basicConfig(format="%(message)s", level=logging.INFO)
-        logging.getLogger().handlers[0].setFormatter(structlog.stdlib.ProcessorFormatter(
+        logging.getLogger().handlers[0].setFormatter(
+            structlog.stdlib.ProcessorFormatter(
             processor=structlog.processors.JSONRenderer(),
         ))
     return logger

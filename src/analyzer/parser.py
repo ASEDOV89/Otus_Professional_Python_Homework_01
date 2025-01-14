@@ -4,11 +4,6 @@ from statistics import median
 from src.analyzer.file_utils import open_log_file
 
 
-# log_format ui_short '$remote_addr  $remote_user $http_x_real_ip [$time_local] "$request" '
-#                     '$status $body_bytes_sent "$http_referer" '
-#                     '"$http_user_agent" "$http_x_forwarded_for" "$http_X_REQUEST_ID" "$http_X_RB_USER" '
-#                     '$request_time';
-
 def parse_line(line):
     log_pattern = re.compile(
         r'(?P<remote_addr>\S+) '
@@ -33,6 +28,7 @@ def parse_line(line):
         return url, request_time
     return None
 
+
 def parse_log(log_path):
     url_stats = defaultdict(lambda: defaultdict(float))
     total_count = 0
@@ -45,16 +41,24 @@ def parse_log(log_path):
                 url, request_time = parsed_line
                 url_stats[url]['count'] += 1
                 url_stats[url]['time_sum'] += request_time
-                url_stats[url]['time_max'] = max(url_stats[url]['time_max'], request_time)
+                url_stats[url]['time_max'] = max(
+                    url_stats[url]['time_max'],
+                    request_time
+                )
                 url_stats[url]['times'].append(request_time)
                 total_count += 1
                 total_time += request_time
 
     for url, stats in url_stats.items():
-        stats['count_perc'] = (stats['count'] / total_count) * 100
-        stats['time_perc'] = (stats['time_sum'] / total_time) * 100
-        stats['time_avg'] = stats['time_sum'] / stats['count']
+        stats['count_perc'] = (
+                (stats['count'] / total_count) * 100)
+        stats['time_perc'] = (
+                (stats['time_sum'] / total_time) * 100)
+        stats['time_avg'] = (
+                stats['time_sum'] / stats['count'])
         stats['time_med'] = median(stats['times'])
         del stats['times']
 
-    return sorted(url_stats.items(), key=lambda item: item[1]['time_sum'], reverse=True)
+    return sorted(url_stats.items(),
+                  key=lambda item: item[1]['time_sum'],
+                  reverse=True)

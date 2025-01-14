@@ -19,6 +19,7 @@ def find_latest_log(log_dir):
 
     return latest_file, latest_date
 
+
 def open_log_file(log_path):
     if log_path.endswith('.gz'):
         return gzip.open(log_path, 'rt')

@@ -71,8 +71,9 @@ def main(config):
 
         render_report(table_json, report_date, report_dir)
         logger.info("Log message", event="my_event", some_key="some_value")
-    except Exception as e:
+    except Exception as err:
         logger.error("unexpected_error", exc_info=True)
+
 
 if __name__ == "__main__":
     args = parse_args()
@@ -84,6 +85,6 @@ if __name__ == "__main__":
         main(config)
     except KeyboardInterrupt:
         get_logger(config).info("Script interrupted by user")
-    except Exception as e:
+    except Exception as err:
         get_logger(config).error("unexpected_error", exc_info=True)
-        raise e
+        raise err
