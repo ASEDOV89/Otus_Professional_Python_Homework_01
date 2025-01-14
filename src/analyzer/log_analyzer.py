@@ -1,10 +1,10 @@
 import os
+import structlog
 from src.analyzer.config import load_config, parse_args
 from src.analyzer.log import get_logger
 from src.analyzer.file_utils import find_latest_log
 from src.analyzer.parser import parse_log
 from src.analyzer.reporter import render_report
-import structlog
 from structlog.stdlib import LoggerFactory
 
 

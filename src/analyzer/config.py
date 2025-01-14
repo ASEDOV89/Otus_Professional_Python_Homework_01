@@ -1,5 +1,7 @@
-import os, argparse, sys, json
-
+import os
+import argparse
+import sys
+import json
 
 def load_config(path):
     if not os.path.exists(path):

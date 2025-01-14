@@ -1,4 +1,7 @@
-import re, os, gzip, datetime
+import re
+import os
+import gzip
+import datetime
 
 
 def find_latest_log(log_dir):

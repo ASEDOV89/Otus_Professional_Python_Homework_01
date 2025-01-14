@@ -1,5 +1,5 @@
-import structlog, logging
-
+import structlog
+import logging
 
 def get_logger(config):
     log_file_path = config.get('LOG_FILE', None)

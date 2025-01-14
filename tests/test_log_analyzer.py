@@ -1,4 +1,7 @@
-import pytest, datetime, gzip, os, logging
+import pytest
+import datetime
+import gzip
+import logging
 from unittest.mock import patch
 from src.analyzer.file_utils import find_latest_log, open_log_file
 from src.analyzer.config import load_config, parse_args
