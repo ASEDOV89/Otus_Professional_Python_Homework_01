@@ -23,5 +23,7 @@ def find_latest_log(log_dir):
 
 def open_log_file(log_path):
     return (
-        gzip.open(log_path, "rt") if log_path.suffix == ".gz" else open(log_path, "r")
+        gzip.open(log_path, "rt")
+        if log_path.suffix == ".gz"
+        else open(log_path, "r")
     )
