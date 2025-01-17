@@ -75,8 +75,13 @@ def main(config):
 
         render_report(table_json, report_date, report_dir)
         logger.info("Log message", event="my_event", some_key="some_value")
-    except Exception:
-        logger.error("unexpected_error", exc_info=True)
+
+    except FileNotFoundError as e:
+        logger.error("File not found: %s", e)
+    except ValueError as e:
+        logger.error("Value error: %s", e)
+    except Exception as e:
+        logger.error("Unexpected error: %s", e, exc_info=True)
 
 
 if __name__ == "__main__":
@@ -85,10 +90,16 @@ if __name__ == "__main__":
     user_config = load_config(config_path)
     config = {**default_config, **user_config}
 
+    logger = get_logger(config)
+
     try:
         main(config)
     except KeyboardInterrupt:
-        get_logger(config).info("Script interrupted by user")
-    except Exception as err:
-        get_logger(config).error("unexpected_error", exc_info=True)
-        raise err
+        logger.info("Script interrupted by user")
+    except FileNotFoundError as e:
+        logger.error("Configuration file not found: %s", e)
+    except ValueError as e:
+        logger.error("Value error: %s", e)
+    except Exception as e:
+        logger.error("Unexpected error occurred: %s", e, exc_info=True)
+        raise
