@@ -21,6 +21,9 @@ jobs:
     - name: Lint with flake8
       run: |
         poetry run flake8 src tests
+    - name: Format black
+      run: |
+        poetry run black .
     - name: Format with black
       run: |
         poetry run black --check src tests
